@@ -4,34 +4,46 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TicTacToe {
-    public static void TTT(String[] args) {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        
-        char[] board = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
-        int turns = 0;
-        char currentPlayer = 'X';
-        String resultMessage = "Draw!";
+        char[] board;
+        boolean playAgain;
 
-        while (turns < 9) {
-            printBoard(board);
-            System.out.printf("Current player: %s. Choose a number: ", currentPlayer);
-
-            int input = getPlayerInput(scanner, board);
-            board[input - 1] = currentPlayer;
-
-            if (checkWin(board, currentPlayer)) {
-                resultMessage = "Congratulations, player " + currentPlayer + ", has won!";
-                break;
-            } else {
-                turns++;
-                currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
+        do {
+            board = new char[]{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
+            int turns = 0;
+            char currentPlayer = 'X';
+            String resultMessage = "Draw!";
+    
+            while (turns < 9) {
+                printBoard(board);
+                System.out.printf("Current player: %s. Choose a number: ", currentPlayer);
+    
+                int input = getPlayerInput(scanner, board);
+                board[input - 1] = currentPlayer;
+    
+                if (checkWin(board, currentPlayer)) {
+                    resultMessage = "Congratulations, player " + currentPlayer + ", has won!";
+                    break;
+                } else {
+                    turns++;
+                    currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
+                }
             }
-        }
-
-        printBoard(board);
-        System.out.println(resultMessage);
+    
+            printBoard(board);
+            System.out.println(resultMessage);
+            playAgain = askToPlayAgain(scanner);
+    
+        } while (playAgain);
         
         scanner.close();
+    }
+
+    private static boolean askToPlayAgain(Scanner scanner) {
+        System.out.print("Do you want to play again? (y/n): ");
+        String response = scanner.next();
+        return response.equalsIgnoreCase("y");
     }
 
     private static int getPlayerInput(Scanner scanner, char[] board) {
