@@ -93,11 +93,20 @@ public class TicTacToe {
     }
 
     private static void printBoard(char[] board) {
-        System.out.println("\n" + board[0] + " | " + board[1] + " | " + board[2]);
+        System.out.println("\n" + 
+            (board[0] == ' ' ? "1" : board[0]) + " | " + 
+            (board[1] == ' ' ? "2" : board[1]) + " | " + 
+            (board[2] == ' ' ? "3" : board[2]));
         System.out.println("--+---+--");
-        System.out.println(board[3] + " | " + board[4] + " | " + board[5]);
+        System.out.println(
+            (board[3] == ' ' ? "4" : board[3]) + " | " + 
+            (board[4] == ' ' ? "5" : board[4]) + " | " + 
+            (board[5] == ' ' ? "6" : board[5]));
         System.out.println("--+---+--");
-        System.out.println(board[6] + " | " + board[7] + " | " + board[8] + "\n");
+        System.out.println(
+            (board[6] == ' ' ? "7" : board[6]) + " | " + 
+            (board[7] == ' ' ? "8" : board[7]) + " | " + 
+            (board[8] == ' ' ? "9" : board[8]) + "\n");
     }
 
     private static int getPlayerInput(Scanner scanner, char[] board) {
